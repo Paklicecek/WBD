@@ -1,29 +1,37 @@
-import {Score,position} from "./game.js";
+import {Score,position,gameBoard,SNAKEPART} from "./game.js";
+import {currentDirection,directions, updateSnakePosition} from "./input.js";
 
-let x 
-let y 
+
+let X
+let Y
 let scoreCount = 0
 
 export function applePosition() {
-    x = Math.floor(Math.random()*15)+1
-    y = Math.floor(Math.random()*15)+1
+    X = Math.floor(Math.random()*15)+1
+    Y = Math.floor(Math.random()*15)+1
 }
 
 applePosition()
 export function getPosition(){
-    return[x,y]
+    return[X,Y]
 }
 
 export function foodSpawn() {
     const svg = document.querySelector("svg")
-    svg.style.gridColumnStart = x
-    svg.style.gridRowStart = y
+    svg.style.gridColumnStart = X
+    svg.style.gridRowStart = Y
 }
+
 export function appleSpawn() {
     if(position.y == getPosition()[0] && position.x == getPosition()[1]){
-    applePosition()
-    foodSpawn()
-    scoreCount++
-    Score.innerHTML = "Score: " + scoreCount
+        applePosition()
+        foodSpawn()
+        scoreCount++
+        Score.innerHTML = "Score: " + scoreCount
+        for(let i = 0; i <= scoreCount ;i++){
+            SNAKEPART.style.gridColumn = position.y - 1 // špatně
+            SNAKEPART.style.gridRow = position.x  // špatně
+            gameBoard.appendChild(SNAKEPART) 
+        }
     }
 }

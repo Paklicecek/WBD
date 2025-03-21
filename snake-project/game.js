@@ -1,13 +1,16 @@
 import {currentDirection,directions, updateSnakePosition} from "./input.js";
-import {foodSpawn,getPosition,applePosition, appleSpawn} from "./food.js";
+import {foodSpawn,appleSpawn} from "./food.js";
 
 export const SNAKE = document.createElement("div")
 export const gameBoard = document.querySelector(".game-board")
 export const Score = document.querySelector("#Score")
-SNAKE.classList.add("snake")
 const boardClasses = ["board2", "board"];
 const popupContainer = document.querySelector(".container")
-//test 
+export const SNAKEPART = document.createElement("div")
+
+SNAKE.classList.add("snake")
+SNAKEPART.classList.add("snake-part")
+
 
 gameBoard.appendChild(SNAKE)
 let colorLocation = { x:0, y: 0}
@@ -34,11 +37,15 @@ function main(currentTime){
     const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000
     if (secondsSinceLastRender < 1 / snakeSpeed) return
     lastRenderTime = currentTime
+
     gameOver()
-    if(currentDirection != ""){
-    directions[currentDirection]()
     updateSnakePosition()
+
+    if(currentDirection != ""){
+        directions[currentDirection]()
+        updateSnakePosition()
     }
+
     appleSpawn()
 }
 
@@ -51,23 +58,22 @@ function popupMessage(){
 
 function gameOver(){
     // Nefunguje
-    if(position.x == 16){
+    if(position.x >= 16){
+        SNAKE.style.gridRowStart = 15
+        console.log("Experiment")
         popupMessage()
-        position.x
     }
     // Nefunguje
-    else if(position.y == 16){
-        popupMessage()
+    else if(position.y >= 16){
         SNAKE.style.gridColumnStart = 15
-
+        console.log("Socialni")
+        popupMessage()
     }
     else if(position.x == 0){
         popupMessage()
-        SNAKE.style.gridRowStart = 15
 
     }
     else if(position.y == 0){
         popupMessage()
-        SNAKE.style.gridRowStart = 15
     }
 }
