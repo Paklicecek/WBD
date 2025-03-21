@@ -33,8 +33,8 @@ export function appleSpawn() {
             const SNAKEPART = document.createElement("div")
             SNAKEPART.classList.add("snake-part")
 
-            SNAKEPART.style.gridColumnStart = position.y // špatně
-            SNAKEPART.style.gridRowStart = position.x  // špatně
+            SNAKEPART.style.gridColumnStart =  
+            SNAKEPART.style.gridRowStart =   
             
             gameBoard.appendChild(SNAKEPART) 
         }
