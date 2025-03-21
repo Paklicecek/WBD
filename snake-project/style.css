@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 body{
     display: flex;
@@ -12,7 +13,7 @@ body{
 }
 header{
     height: 5rem;
-    width: 100%;
+    width: 100vmin;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -23,6 +24,7 @@ header{
 #Score{
     color: white;
     z-index: 100;
+    font-size: 5vmin;
 }
 main{
     display: flex;
@@ -44,6 +46,12 @@ main{
     border-radius: 0px 134px 134px 0px;
     -webkit-border-radius: 0px 134px 134px 0px;
     -moz-border-radius: 0px 134px 134px 0px;
+    transition: 0.25s;
+}
+.snake-part{
+    background-color: #3aaed8;
+    border: .25vmin solid black;
+    z-index: 10;
     transition: 0.25s;
 }
 .food{

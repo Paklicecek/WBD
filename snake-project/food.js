@@ -1,4 +1,4 @@
-import {Score,position,gameBoard,SNAKEPART} from "./game.js";
+import {Score,position,gameBoard} from "./game.js";
 import {currentDirection,directions, updateSnakePosition} from "./input.js";
 
 
@@ -28,9 +28,13 @@ export function appleSpawn() {
         foodSpawn()
         scoreCount++
         Score.innerHTML = "Score: " + scoreCount
-        for(let i = 0; i <= scoreCount ;i++){
-            SNAKEPART.style.gridColumn = position.y - 1 // špatně
-            SNAKEPART.style.gridRow = position.x  // špatně
+        for(let i = 0; i <= scoreCount; i++){
+            const SNAKEPART = document.createElement("div")
+            SNAKEPART.classList.add("snake-part")
+
+            SNAKEPART.style.gridColumnStart = position.y // špatně
+            SNAKEPART.style.gridRowStart = position.x  // špatně
+            
             gameBoard.appendChild(SNAKEPART) 
         }
     }
