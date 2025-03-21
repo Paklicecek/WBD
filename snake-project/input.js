@@ -27,33 +27,39 @@ export const directions = {
 
 export let currentDirection = ""
 
+let inputDirection = {x: 0, y:0}
+let lastDirection = {x:0, y:0}
+
+
+
 window.addEventListener("keydown", key => 
     {
         switch (key.key) {
             case "ArrowUp":
-                if(currentDirection != "down"){
-                    currentDirection = "up"
-                SNAKE.style.rotate = "-90deg"
+                if(lastDirection.y != 0){
+                    inputDirection = {x: -1 , y: 0}
                 } 
                 break;
             case "ArrowDown":
-                if(currentDirection != "up"){
-                    currentDirection = "down"
-                    SNAKE.style.rotate = "90deg"
+                if(lastDirection.y != 0){
+                    inputDirection = {x: 1 , y: 0}
                 } 
                 break;
             case "ArrowLeft":
-                if(currentDirection != "right"){
-                    currentDirection = "left"
-                    SNAKE.style.rotate = "180deg"
+                if(lastDirection.y != 0){
+                    inputDirection = {x: 0 , y: -1}
                 }
                 break;
             case "ArrowRight":
-                if(currentDirection != "left"){
-                    currentDirection = "right"
-                    SNAKE.style.rotate = "0deg"  
+                if(lastDirection.y != 0){
+                    inputDirection = {x: 0 , y: 1}
                 } 
                 break;
         }
         updateSnakePosition()
     })
+export function getInput(){
+    lastDirection = inputDirection
+    return inputDirection
+}
+    

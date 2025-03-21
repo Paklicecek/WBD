@@ -22,7 +22,7 @@ for(let i = 1; i <= 15; i++) {
     } 
 }
 
-export let position = { x: 8, y: 8 }
+export let position = { x: 8 , y: 8 }
 const snakeSpeed = 2
 let lastRenderTime = 0
 

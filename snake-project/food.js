@@ -12,6 +12,7 @@ export function applePosition() {
 }
 
 applePosition()
+
 export function getPosition(){
     return[X,Y]
 }
