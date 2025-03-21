@@ -34,6 +34,7 @@ let lastDirection = {x:0, y:0}
 
 window.addEventListener("keydown", key => 
     {
+        //test
         switch (key.key) {
             case "ArrowUp":
                     inputDirection = {x: -1 , y: 0}
