@@ -7,6 +7,7 @@ export const Score = document.querySelector("#Score")
 SNAKE.classList.add("snake")
 const boardClasses = ["board2", "board"];
 const popupContainer = document.querySelector(".container")
+//test 
 
 gameBoard.appendChild(SNAKE)
 let colorLocation = { x:0, y: 0}
