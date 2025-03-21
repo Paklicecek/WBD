@@ -1,4 +1,4 @@
-import {currentDirection,directions, updateSnakePosition} from "./input.js";
+import {updateSnakePosition,getInput} from "./input.js";
 import {foodSpawn,appleSpawn} from "./food.js";
 
 export const SNAKE = document.createElement("div")
@@ -35,13 +35,10 @@ function main(currentTime){
     if (secondsSinceLastRender < 1 / snakeSpeed) return
     lastRenderTime = currentTime
 
+    getInput()
     gameOver()
     updateSnakePosition()
 
-    if(currentDirection != ""){
-        directions[currentDirection]()
-        updateSnakePosition()
-    }
 
     appleSpawn()
 }

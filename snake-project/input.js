@@ -36,30 +36,27 @@ window.addEventListener("keydown", key =>
     {
         switch (key.key) {
             case "ArrowUp":
-                if(lastDirection.y != 0){
                     inputDirection = {x: -1 , y: 0}
-                } 
+                
                 break;
             case "ArrowDown":
-                if(lastDirection.y != 0){
                     inputDirection = {x: 1 , y: 0}
-                } 
+                
                 break;
             case "ArrowLeft":
-                if(lastDirection.y != 0){
                     inputDirection = {x: 0 , y: -1}
-                }
+                
                 break;
             case "ArrowRight":
-                if(lastDirection.y != 0){
                     inputDirection = {x: 0 , y: 1}
-                } 
+                
                 break;
         }
         updateSnakePosition()
     })
 export function getInput(){
     lastDirection = inputDirection
-    return inputDirection
+    position.x += inputDirection.x
+    position.y += inputDirection.y
 }
     
