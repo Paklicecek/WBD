@@ -1,33 +1,15 @@
-import {SNAKE,position} from "./game.js";
+import {SNAKE,position, snakeBody} from "./game.js";
 
 export function updateSnakePosition() {
     SNAKE.style.gridColumnStart = position.y
     SNAKE.style.gridRowStart = position.x
+    
+    for(let i = snakeBody.length - 1; i > 0; i--) {
+        snakeBody[i].style.gridColumnStart = snakeBody[i-1].style.gridColumnStart
+        snakeBody[i].style.gridRowStart = snakeBody[i-1].style.gridRowStart
+    }
 }
-
-function movementRight(){
-    position.y += 1
-}
-function movementLeft(){
-    position.y -= 1
-}
-function movementUp(){
-    position.x -= 1
-}
-function movementDown(){
-    position.x += 1
-}
-
-export const directions = {
-    "up": movementUp,
-    "down": movementDown,
-    "left": movementLeft,
-    "right": movementRight,
-}
-
-export let currentDirection = ""
-
-let inputDirection = {x: 0, y:0}
+let inputDirection = {x: 0, y:1}
 let lastDirection = {x:0, y:0}
 
 

@@ -1,10 +1,10 @@
-import {Score,position,gameBoard} from "./game.js";
-import {currentDirection,directions, updateSnakePosition} from "./input.js";
+import {Score,position,gameBoard,snakeBody} from "./game.js";
+import {} from "./input.js";
 
 
 let X
 let Y
-let scoreCount = 0
+let scoreCount = 1
 
 export function applePosition() {
     X = Math.floor(Math.random()*15)+1
@@ -29,12 +29,12 @@ export function appleSpawn() {
         foodSpawn()
         scoreCount++
         Score.innerHTML = "Score: " + scoreCount
-        for(let i = 0; i <= scoreCount; i++){
+        for(let i = 1; i <= scoreCount; i++){
             const SNAKEPART = document.createElement("div")
-            SNAKEPART.classList.add("snake-part")
+            snakeBody.push(SNAKEPART)
+            snakeBody[i].classList.add("snake-part")
 
-            SNAKEPART.style.gridColumnStart =  
-            SNAKEPART.style.gridRowStart =   
+  
             
             gameBoard.appendChild(SNAKEPART) 
         }

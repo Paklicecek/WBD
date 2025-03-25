@@ -13,7 +13,7 @@ body{
 }
 header{
     height: 5rem;
-    width: 100vmin;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -110,7 +110,6 @@ svg{
     position: relative;
     border: none;
     cursor: pointer;
-    font-family: "Indie Flower", serif;
     top: 15px;
 }
 @keyframes slideUp{
