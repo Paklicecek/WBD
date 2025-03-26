@@ -24,16 +24,18 @@ export function foodSpawn() {
 }
 
 export function appleSpawn() {
-    if(position.y == getPosition()[0] && position.x == getPosition()[1]){
-        applePosition()
-        foodSpawn()
-        scoreCount++
-        Score.innerHTML = "Score: " + scoreCount
-        for(let i = 1; i <= scoreCount; i++){
-            const SNAKEPART = document.createElement("div")
-            snakeBody.push(SNAKEPART)
-            snakeBody[i].classList.add("snake-part")
-            gameBoard.appendChild(snakeBody[i]) 
+    for(let i = 0; i < snakeBody.length; i++){
+        if(snakeBody[i].style.gridColumnStart == getPosition()[0] && snakeBody[i].style.gridRowStart == getPosition()[1]){
+            applePosition()
+            foodSpawn()
+            scoreCount++
+            Score.innerHTML = "Score: " + scoreCount
+            for(let i = 1; i <= scoreCount; i++){
+                const SNAKEPART = document.createElement("div")
+                snakeBody.push(SNAKEPART)
+                snakeBody[i].classList.add("snake-part")
+                gameBoard.appendChild(snakeBody[i]) 
+            }
         }
     }
 }

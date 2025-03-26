@@ -26,8 +26,7 @@ for(let i = 1; i <= 15; i++) {
 }
 
 export let position = { x: 8 , y: 8 }
-const snakeSpeed = 3
-let lastRenderTime = 0
+
 
 /*
 for(let i = 1; i <= 3; i++){
@@ -44,24 +43,11 @@ for(let i = 1; i <= 3; i++){
 foodSpawn()
 updateSnakePosition()
 
-function main(currentTime){
-    window.requestAnimationFrame(main)
-    const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000
-    if (secondsSinceLastRender < 1 / snakeSpeed) return
-    lastRenderTime = currentTime
-    appleSpawn()
-    getInput()
-    gameOver()
-    updateSnakePosition()
-}
-
-window.requestAnimationFrame(main)
-
-function popupMessage(){
+export function popupMessage(){
     popupContainer.style.opacity = "1"
 }
 
-function gameOver(){
+export function gameOver(){
     if(position.x >= 16){
         SNAKE.style.gridRowStart = 15
         popupMessage()
