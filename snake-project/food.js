@@ -33,10 +33,7 @@ export function appleSpawn() {
             const SNAKEPART = document.createElement("div")
             snakeBody.push(SNAKEPART)
             snakeBody[i].classList.add("snake-part")
-
-  
-            
-            gameBoard.appendChild(SNAKEPART) 
+            gameBoard.appendChild(snakeBody[i]) 
         }
     }
 }

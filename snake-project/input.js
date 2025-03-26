@@ -1,8 +1,8 @@
 import {SNAKE,position, snakeBody} from "./game.js";
 
 export function updateSnakePosition() {
-    SNAKE.style.gridColumnStart = position.y
-    SNAKE.style.gridRowStart = position.x
+    snakeBody[0].style.gridColumnStart = position.y
+    snakeBody[0].style.gridRowStart = position.x
     
     for(let i = snakeBody.length - 1; i > 0; i--) {
         snakeBody[i].style.gridColumnStart = snakeBody[i-1].style.gridColumnStart
@@ -19,20 +19,24 @@ window.addEventListener("keydown", key =>
         
         switch (key.key) {
             case "ArrowUp":
+                if(lastDirection.x !== 0) break
                     inputDirection = {x: -1 , y: 0}
-                
+                    updateSnakePosition()
                 break;
             case "ArrowDown":
+                if(lastDirection.x !== 0) break
                     inputDirection = {x: 1 , y: 0}
-                
+                    updateSnakePosition()
                 break;
             case "ArrowLeft":
+                if(lastDirection.y !== 0) break
                     inputDirection = {x: 0 , y: -1}
-                
+                    updateSnakePosition()
                 break;
             case "ArrowRight":
+                if(lastDirection.y !== 0) break
                     inputDirection = {x: 0 , y: 1}
-                
+                    updateSnakePosition()
                 break;
         }
         updateSnakePosition()

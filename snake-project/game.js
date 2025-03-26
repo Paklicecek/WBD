@@ -26,7 +26,7 @@ for(let i = 1; i <= 15; i++) {
 }
 
 export let position = { x: 8 , y: 8 }
-const snakeSpeed = 1
+const snakeSpeed = 3
 let lastRenderTime = 0
 
 /*
@@ -49,31 +49,25 @@ function main(currentTime){
     const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000
     if (secondsSinceLastRender < 1 / snakeSpeed) return
     lastRenderTime = currentTime
-
+    appleSpawn()
     getInput()
     gameOver()
     updateSnakePosition()
-
-
-    appleSpawn()
 }
 
 window.requestAnimationFrame(main)
 
 function popupMessage(){
     popupContainer.style.opacity = "1"
-    currentDirection = ""
 }
 
 function gameOver(){
     if(position.x >= 16){
         SNAKE.style.gridRowStart = 15
-        console.log("Experiment")
         popupMessage()
     }
         else if(position.y >= 16){
         SNAKE.style.gridColumnStart = 15
-        console.log("Socialni")
         popupMessage()
     }
     else if(position.x == 0){
