@@ -19,8 +19,16 @@ export function getPosition(){
 
 export function foodSpawn() {
     const svg = document.querySelector("svg")
-    svg.style.gridColumnStart = X
-    svg.style.gridRowStart = Y
+    for(let i = 0; i < snakeBody.length; i++){
+        if(snakeBody[i].style.gridColumnStart !== X && snakeBody[i].style.gridRowStart !== Y){
+            svg.style.gridColumnStart = X
+            svg.style.gridRowStart = Y
+        }
+        else{
+            applePosition()
+            foodSpawn()
+        }
+    }
 }
 
 export function appleSpawn() {
