@@ -1,4 +1,4 @@
-import {updateSnakePosition,getInput} from "./input.js";
+import {updateSnakePosition,controls, interval} from "./input.js";
 import {foodSpawn,appleSpawn} from "./food.js";
 
 export const SNAKE = document.createElement("div")
@@ -9,7 +9,7 @@ const popupContainer = document.querySelector(".container")
 export const snakeBody = [SNAKE]
 
 
-
+//Změnit lehce barvu nebo tvar hlavy
 SNAKE.classList.add("snake-part")
 
 gameBoard.appendChild(SNAKE)
@@ -27,42 +27,32 @@ for(let i = 1; i <= 15; i++) {
 
 export let position = { x: 8 , y: 8 }
 
-
-/*
-for(let i = 1; i <= 3; i++){
-    const snakeParts = document.createElement("div")
-    snakeParts.classList.add("snake-part")
-    snakeBody.push(snakeParts)
-    snakeBody[i].style.gridColumnStart = position.y - i
-    snakeBody[i].style.gridRowStart = position.x
-    gameBoard.appendChild(snakeBody[i])
-}
-*/
-
-
 foodSpawn()
 updateSnakePosition()
 
-export function popupMessage(){
+function popupMessage(){
     popupContainer.style.opacity = "1"
 }
-
+function lostGame(){
+    clearInterval(interval)
+    popupMessage()
+    window.removeEventListener("keydown",controls)
+}
 export function gameOver(){
     if(position.x >= 16){
         SNAKE.style.gridRowStart = 15
-        popupMessage()
+        lostGame()
     }
-        else if(position.y >= 16){
+    else if(position.y >= 16){
         SNAKE.style.gridColumnStart = 15
-        popupMessage()
+        lostGame()
     }
-    else if(position.x == 0){
+    else if(position.x <= 0){
         SNAKE.style.gridRowStart = 1
-        popupMessage()
-        
+        lostGame()
     }
-    else if(position.y == 0){
+    else if(position.y <= 0){
         SNAKE.style.gridColumnStart = 1
-        popupMessage()
+        lostGame()
     }
 }

@@ -1,7 +1,7 @@
-import {position, snakeBody,popupMessage,gameOver} from "./game.js";
+import {position, snakeBody,gameOver} from "./game.js";
 import {appleSpawn} from "./food.js";
 
-let interval
+export let interval
 
 export function updateSnakePosition() {
     snakeBody[0].style.gridColumnStart = position.y
@@ -21,57 +21,51 @@ export function intervalStart(){
     interval = setInterval(() => {
         appleSpawn()
         getInput()
-        gameOver()
         updateSnakePosition()
+        gameOver()
     }, snakeSpeed);
 }
-
-window.addEventListener("keydown", key => 
-    {
+function gameControl(){
+    clearInterval(interval)
+    getInput()
+    updateSnakePosition()
+    appleSpawn()
+    intervalStart()
+}
+export function controls(key) {
+           switch (key.key) {
+                case "ArrowUp":
+                case "w":
+                case "W":
+                    if(lastDirection.x !== 0) break
+                        inputDirection = {x: -1 , y: 0}
+                        gameControl()
+                    break;
+                case "ArrowDown":
+                case "s":
+                case "S":
+                    if(lastDirection.x !== 0) break
+                        inputDirection = {x: 1 , y: 0}
+                        gameControl()
+                    break;
+                case "ArrowLeft":
+                case "a":
+                case "A":
+                    if(lastDirection.y !== 0) break
+                        inputDirection = {x: 0 , y: -1}
+                        gameControl()
+                    break;
+                case "ArrowRight":
+                case "d":
+                case "D":
+                    if(lastDirection.y !== 0) break
+                        inputDirection = {x: 0 , y: 1}
+                        gameControl()
+                    break;
+            }
         
-        switch (key.key) {
-            case "ArrowUp":
-            case "w":
-            case "W":
-                if(lastDirection.x !== 0) break
-                    inputDirection = {x: -1 , y: 0}
-                    clearInterval(interval)
-                    getInput()
-                    updateSnakePosition()
-                    intervalStart()
-                break;
-            case "ArrowDown":
-            case "s":
-            case "S":
-                if(lastDirection.x !== 0) break
-                    inputDirection = {x: 1 , y: 0}
-                    clearInterval(interval)
-                    getInput()
-                    updateSnakePosition()
-                    intervalStart()
-                break;
-            case "ArrowLeft":
-            case "a":
-            case "A":
-                if(lastDirection.y !== 0) break
-                    inputDirection = {x: 0 , y: -1}
-                    clearInterval(interval)
-                    getInput()
-                    updateSnakePosition()
-                    intervalStart()
-                break;
-            case "ArrowRight":
-            case "d":
-            case "D":
-                if(lastDirection.y !== 0) break
-                    inputDirection = {x: 0 , y: 1}
-                    clearInterval(interval)
-                    getInput()
-                    updateSnakePosition()
-                    intervalStart()
-                break;
-        }
-    })
+}
+window.addEventListener("keydown",controls)
 export function getInput(){
     lastDirection = inputDirection
     position.x += inputDirection.x

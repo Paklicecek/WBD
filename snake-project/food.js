@@ -5,7 +5,7 @@ import {} from "./input.js";
 let X
 let Y
 let scoreCount = 1
-
+/*
 export function applePosition() {
     X = Math.floor(Math.random()*15)+1
     Y = Math.floor(Math.random()*15)+1
@@ -16,7 +16,7 @@ applePosition()
 export function getPosition(){
     return[X,Y]
 }
-
+*/
 export function foodSpawn() {
     const svg = document.querySelector("svg")
     for(let i = 0; i < snakeBody.length; i++){
@@ -46,4 +46,9 @@ export function appleSpawn() {
             }
         }
     }
+}
+function getRandomPosition() {
+    X = Math.floor(Math.random()*15)+1
+    Y = Math.floor(Math.random()*15)+1
+    
 }
