@@ -10,7 +10,7 @@ export const snakeBody = [SNAKE]
 
 
 //Změnit lehce barvu nebo tvar hlavy
-SNAKE.classList.add("snake-part")
+SNAKE.classList.add("snake")
 
 gameBoard.appendChild(SNAKE)
 let colorLocation = { x:0, y: 0}

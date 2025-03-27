@@ -13,18 +13,48 @@ body{
 }
 header{
     height: 5rem;
-    width: 100%;
+    width: 100vmin;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: flex-end;
+    justify-content: space-between;
     background-color: black;
-    bottom: 100px;
 }
 #Score{
     color: white;
     z-index: 100;
-    font-size: 5vmin;
+    font-size: 4vmin;
+}
+#Restart{
+    color: white;
+    z-index: 100;
+    font-size: 4vmin;
+    opacity: 1;
+    cursor: pointer;
+}
+#speedSelect{
+    background-color: black;
+    color: white;
+    z-index: 100;
+    width: auto;
+    font-size: 4vmin;
+    opacity: 1;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+select option{
+    animation: 1s slideIn forwards;
+}
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 main{
     display: flex;
@@ -40,17 +70,13 @@ main{
     z-index: -2;
 }
 .snake{
-    background-color: #3aaed8;
+    background-color: #075a79;
     border: .25vmin solid black;
     z-index: 10;
-    border-radius: 0px 134px 134px 0px;
-    -webkit-border-radius: 0px 134px 134px 0px;
-    -moz-border-radius: 0px 134px 134px 0px;
     transition: 0.25s;
 }
 .snake-part{
     background-color: #3aaed8;
-    border: .25vmin solid black;
     z-index: 10;
     transition: 0.25s;
 }
@@ -76,15 +102,14 @@ svg{
 }
 .container{
     display: grid;
-    grid-row: 5/12;
-    grid-column: 5/12;
+    grid-row: 1/16;
+    grid-column: 1/16;
     opacity: 0;
-
+    width: 100vmin;
+    height: 100vmin;
 }
 .popup{
-    background-color: rgba(107, 109, 118, 0.8);
     border-radius: 20px;
-    opacity: 1;
     font-size: 6vmin;
     z-index: 50;
     display: flex;
@@ -97,20 +122,8 @@ svg{
     animation: 1s slideUp forwards;
     flex-direction: column;
     text-align: center;
-    color: white;
-    border: solid white;
-}
-.restartButton{
-    color: white;
-    background-color: transparent;
-    height: 100%;
-    z-index: 50;
-    font-size: 5vmin;
-    transition: 0.3s;
-    position: relative;
-    border: none;
-    cursor: pointer;
-    top: 15px;
+    color: whitesmoke;
+    backdrop-filter: blur(1.2vmin);
 }
 @keyframes slideUp{
     from{

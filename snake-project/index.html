@@ -13,13 +13,21 @@
 <body>
     <header>
         <p id="Score">Score: 1</p>
+        <div id="Restart">Restart</div>
+        <div id="speedSelectContainer">
+            <select id="speedSelect">
+                <option value="clearInterval">Difficulty</option>
+                <option value="600">Easy</option>
+                <option value="450">Medium</option>
+                <option value="350">Hard</option>
+                <option value="200">Insane</option>
+            </select>
+        </div>
     </header>
     <main>
         <div class="game-board">
             <div class="container">
-                <p class="popup">You lost!
-                    <button class="restartButton">Play Again!</button>
-                </p>
+                <p class="popup">You lost!</p>
             </div>
         <svg xmlns="http://www.w3.org/2000/svg" width = "6.67vmin" height = "6.67vmin" viewBox="0 0 72 72">
         <g id="apple">

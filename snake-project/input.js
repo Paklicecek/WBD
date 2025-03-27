@@ -13,9 +13,9 @@ export function updateSnakePosition() {
     }
 }
 
-let inputDirection = {x: 0, y:1}
+let inputDirection = {x: 0, y:0}
 let lastDirection = {x:0, y:0}
-const snakeSpeed = 500
+let snakeSpeed = 600
 
 export function intervalStart(){
     interval = setInterval(() => {
@@ -65,7 +65,7 @@ export function controls(key) {
             }
         
 }
-window.addEventListener("keydown",controls)
+
 export function getInput(){
     lastDirection = inputDirection
     position.x += inputDirection.x
@@ -73,4 +73,41 @@ export function getInput(){
     return inputDirection
 }
 
-intervalStart()
+const speedSelect = document.querySelector("#speedSelect")
+function speedChange(){
+speedSelect.addEventListener("change", () => {
+
+    const selectedSpeed = speedSelect.value
+
+    if(selectedSpeed == "clearInterval"){
+        clearInterval(interval)
+        window.removeEventListener("keydown",controls)
+        inputDirection = {x: 0, y:0}
+    }
+    else if(selectedSpeed == "600"){
+        clearInterval(interval)
+        snakeSpeed = Number(speedSelect.value)
+        intervalStart()
+        window.addEventListener("keydown",controls)
+    }
+    else if(selectedSpeed == "450"){
+        clearInterval(interval)
+        snakeSpeed = Number(speedSelect.value)
+        intervalStart()
+        window.addEventListener("keydown",controls)
+    }
+    else if(selectedSpeed == "350"){
+        clearInterval(interval)
+        snakeSpeed = Number(speedSelect.value)
+        intervalStart()
+        window.addEventListener("keydown",controls)
+    }
+    else if(selectedSpeed == "200"){
+        clearInterval(interval)
+        snakeSpeed = Number(speedSelect.value)
+        intervalStart()
+        window.addEventListener("keydown",controls)
+    }
+})
+}
+speedChange()
