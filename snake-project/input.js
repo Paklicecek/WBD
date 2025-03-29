@@ -1,5 +1,5 @@
-import {position, snakeBody,gameOver} from "./game.js";
-import {appleSpawn} from "./food.js";
+import {position, snakeBody,gameOver, hidePopup, Score} from "./game.js";
+import {appleSpawn, resetScore, scoreCount} from "./food.js";
 
 export let interval
 
@@ -27,6 +27,7 @@ export function intervalStart(){
 }
 function gameControl(){
     clearInterval(interval)
+    gameOver()
     getInput()
     updateSnakePosition()
     appleSpawn()
@@ -110,4 +111,22 @@ speedSelect.addEventListener("change", () => {
     }
 })
 }
+restartGame()
 speedChange()
+export function restartGame(){
+    const restartButton = document.querySelector("#Restart")
+    restartButton.addEventListener("click", () => {
+        position.x = 8
+        position.y = 8
+        updateSnakePosition()
+        hidePopup()
+        speedSelect.value = "clearInterval"
+        clearInterval(interval)
+        window.removeEventListener("keydown",controls)
+        for(let i = 1; i < snakeBody.length; i++){
+            snakeBody[i].remove()
+        }
+        Score.innerHTML = "Score: 1"
+        resetScore()
+    })
+}

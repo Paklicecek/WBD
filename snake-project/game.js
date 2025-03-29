@@ -3,7 +3,7 @@ import {foodSpawn,appleSpawn} from "./food.js";
 
 export const SNAKE = document.createElement("div")
 export const gameBoard = document.querySelector(".game-board")
-export const Score = document.querySelector("#Score")
+export let Score = document.querySelector("#Score")
 const boardClasses = ["board2", "board"];
 const popupContainer = document.querySelector(".container")
 export const snakeBody = [SNAKE]
@@ -29,7 +29,9 @@ export let position = { x: 8 , y: 8 }
 
 foodSpawn()
 updateSnakePosition()
-
+export function hidePopup(){
+    popupContainer.style.opacity = "0"
+}
 function popupMessage(){
     popupContainer.style.opacity = "1"
 }

@@ -1,11 +1,13 @@
 import {Score,position,gameBoard,snakeBody} from "./game.js";
-import {} from "./input.js";
+import { restartGame } from "./input.js";
 
 
 let X
 let Y
-let scoreCount = 1
-
+export let scoreCount = 1
+export function resetScore() {
+    scoreCount = 1
+}
 export function applePosition() {
     X = Math.floor(Math.random()*15)+1
     Y = Math.floor(Math.random()*15)+1
