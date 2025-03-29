@@ -27,10 +27,11 @@ export function intervalStart(){
 }
 function gameControl(){
     clearInterval(interval)
+    appleSpawn()
     gameOver()
     getInput()
     updateSnakePosition()
-    appleSpawn()
+    
     intervalStart()
 }
 export function controls(key) {

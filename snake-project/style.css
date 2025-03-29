@@ -10,15 +10,17 @@ body{
     align-items: center;
     flex-direction: column;
     background-color: black;
+    height: 110vh;
 }
 header{
-    height: 5rem;
+    height: 3rem;
     width: 100vmin;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     justify-content: space-between;
     background-color: black;
+    
 }
 #Score{
     color: white;
@@ -29,7 +31,6 @@ header{
     color: white;
     z-index: 100;
     font-size: 4vmin;
-    opacity: 1;
     cursor: pointer;
 }
 #speedSelect{
@@ -42,6 +43,21 @@ header{
     cursor: pointer;
     border: none;
     outline: none;
+}
+.headerAnimation{
+    opacity: 0;
+    animation: headerAnimation 1s forwards;
+    animation-delay: 2s;
+}
+@keyframes headerAnimation{
+    from{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 select option{
     animation: 1s slideIn forwards;
@@ -61,6 +77,27 @@ main{
     justify-content: center;
     align-items: center;
 }
+.menuContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    z-index: 2000;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(4px);
+}
+.menuContainer p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2000;
+    color: white;
+    position: absolute;
+}
 .game-board{
     width: 100vmin;
     height: 100vmin;
@@ -74,6 +111,19 @@ main{
     border: .25vmin solid black;
     z-index: 10;
     transition: 0.25s;
+    opacity: 0;
+    animation: snakeAnimation 1s forwards;
+    animation-delay: 2s;
+}
+@keyframes snakeAnimation{
+    from{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0%);
+    }
 }
 .snake-part{
     background-color: #3aaed8;
@@ -81,21 +131,47 @@ main{
     transition: 0.25s;
 }
 .food{
-    background-color: #ff595e;
-    border: .25vmin solid black;
     z-index: 9;
+    opacity: 0;
+    animation: foodAnimation 1s forwards;
+    animation-delay: 2s;
+}
+@keyframes foodAnimation{
+    from{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0%);
+    }
 }
 .board{
     background-color: #82d173;
     z-index: 0;
     width: 6.67vmin;
     height: 6.67vmin;
+    opacity: 0;
+    animation: 1s boardAnimation forwards;
 }
 .board2{
     background-color: #abfaa9;
     z-index: 0;
     width: 6.67vmin;
     height: 6.67vmin;
+    opacity: 0;
+    animation: 1s boardAnimation forwards;
+    animation-delay: 1s;
+}
+@keyframes boardAnimation{
+    from{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0%);
+    }
 }
 svg{
     z-index: 2;
@@ -123,7 +199,7 @@ svg{
     flex-direction: column;
     text-align: center;
     color: whitesmoke;
-    backdrop-filter: blur(1.2vmin);
+    backdrop-filter: blur(1px);
 }
 @keyframes slideUp{
     from{
@@ -133,5 +209,4 @@ svg{
         opacity: 1;
     }
 }
-
 
