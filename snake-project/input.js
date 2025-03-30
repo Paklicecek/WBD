@@ -1,5 +1,5 @@
-import {position, snakeBody,gameOver, hidePopup, Score} from "./game.js";
-import {appleSpawn, resetScore, scoreCount} from "./food.js";
+import {position, snakeBody,gameOver, hidePopup, Score, popupContainer} from "./game.js";
+import {appleSpawn, resetScore} from "./food.js";
 
 export let interval
 
@@ -23,6 +23,7 @@ export function intervalStart(){
         getInput()
         updateSnakePosition()
         gameOver()
+        console.log(speedSelect.value)
     }, snakeSpeed);
 }
 function gameControl(){
@@ -75,53 +76,43 @@ export function getInput(){
     return inputDirection
 }
 
+export const restartButton = document.querySelector("#Restart")
 const speedSelect = document.querySelector("#speedSelect")
+const menuContainer = document.querySelector(".menuContainer")
+const startButton = document.querySelector("#startButton")
 function speedChange(){
 speedSelect.addEventListener("change", () => {
 
     const selectedSpeed = speedSelect.value
 
     if(selectedSpeed == "clearInterval"){
+        startGame()
         clearInterval(interval)
         window.removeEventListener("keydown",controls)
         inputDirection = {x: 0, y:0}
     }
     else if(selectedSpeed == "600"){
-        clearInterval(interval)
-        snakeSpeed = Number(speedSelect.value)
-        intervalStart()
-        window.addEventListener("keydown",controls)
+        speedChangeControl()
     }
     else if(selectedSpeed == "450"){
-        clearInterval(interval)
-        snakeSpeed = Number(speedSelect.value)
-        intervalStart()
-        window.addEventListener("keydown",controls)
+        speedChangeControl()
     }
     else if(selectedSpeed == "350"){
-        clearInterval(interval)
-        snakeSpeed = Number(speedSelect.value)
-        intervalStart()
-        window.addEventListener("keydown",controls)
+        speedChangeControl()
     }
     else if(selectedSpeed == "200"){
-        clearInterval(interval)
-        snakeSpeed = Number(speedSelect.value)
-        intervalStart()
-        window.addEventListener("keydown",controls)
+        speedChangeControl()
     }
 })
 }
 restartGame()
 speedChange()
-export function restartGame(){
-    const restartButton = document.querySelector("#Restart")
+export function restartGame(){ 
     restartButton.addEventListener("click", () => {
         position.x = 8
         position.y = 8
         updateSnakePosition()
         hidePopup()
-        speedSelect.value = "clearInterval"
         clearInterval(interval)
         window.removeEventListener("keydown",controls)
         for(let i = 1; i < snakeBody.length; i++){
@@ -129,5 +120,33 @@ export function restartGame(){
         }
         Score.innerHTML = "Score: 1"
         resetScore()
+        menuContainer.style.opacity = "1"
+        popupContainer.style.zIndex = "0"
+        inputDirection = {x: 0, y:0}
+        lastDirection = {x:0, y:0}
+        snakeSpeed = Number(speedSelect.value)
     })
 }
+
+function startGame(){
+    
+    const menuContainer = document.querySelector(".menuContainer")
+    
+    window.removeEventListener("keydown",controls)
+    startButton.addEventListener("click", () => {
+        const selectedSpeed = speedSelect.value
+        if(selectedSpeed.value != "clearInterval"){  
+            menuContainer.style.opacity = "0"
+            window.addEventListener("keydown",controls)
+        } 
+    }) 
+    
+}
+function speedChangeControl(){ // vypnout možnost hraní před začátím hry
+    startGame()
+    clearInterval(interval)
+    snakeSpeed = Number(speedSelect.value)
+    intervalStart()
+    window.addEventListener("keydown",controls)
+}
+// přidat aniamci když had narazí do stěny aby vyletel malicko nahoru a pak spadl dolů z mapy 

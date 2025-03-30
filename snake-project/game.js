@@ -5,7 +5,7 @@ export const SNAKE = document.createElement("div")
 export const gameBoard = document.querySelector(".game-board")
 export let Score = document.querySelector("#Score")
 const boardClasses = ["board2", "board"];
-const popupContainer = document.querySelector(".container")
+export const popupContainer = document.querySelector(".lostContainer")
 export const snakeBody = [SNAKE]
 
 
@@ -34,6 +34,7 @@ export function hidePopup(){
 }
 function popupMessage(){
     popupContainer.style.opacity = "1"
+    popupContainer.style.zIndex = "3000"
 }
 function lostGame(){
     clearInterval(interval)

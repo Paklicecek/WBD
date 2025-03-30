@@ -3,6 +3,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
+    user-select: none;
 }
 body{
     display: flex;
@@ -10,67 +11,7 @@ body{
     align-items: center;
     flex-direction: column;
     background-color: black;
-    height: 110vh;
-}
-header{
-    height: 3rem;
-    width: 100vmin;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    justify-content: space-between;
-    background-color: black;
-    
-}
-#Score{
-    color: white;
-    z-index: 100;
-    font-size: 4vmin;
-}
-#Restart{
-    color: white;
-    z-index: 100;
-    font-size: 4vmin;
-    cursor: pointer;
-}
-#speedSelect{
-    background-color: black;
-    color: white;
-    z-index: 100;
-    width: auto;
-    font-size: 4vmin;
-    opacity: 1;
-    cursor: pointer;
-    border: none;
-    outline: none;
-}
-.headerAnimation{
-    opacity: 0;
-    animation: headerAnimation 1s forwards;
-    animation-delay: 2s;
-}
-@keyframes headerAnimation{
-    from{
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-    to{
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-select option{
-    animation: 1s slideIn forwards;
-}
-@keyframes slideIn {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+    height: 100vh;
 }
 main{
     display: flex;
@@ -80,23 +21,89 @@ main{
 .menuContainer{
     display: flex;
     justify-content: center;
+    gap: 10vmin;
     align-items: center;
     flex-direction: column;
-    position: fixed;
+    position: absolute;
     top: 0;
     z-index: 2000;
     width: 100%;
-    height: 100vh;
-    backdrop-filter: blur(4px);
+    height: 110vh;
+    backdrop-filter: blur(10px);
+    #title{
+        font-weight: bold;
+        font-size: 4vmin;
+        z-index: 2000;
+        color: white;
+        position: relative;
+    }
+    #startButton{
+        font-weight: bold;
+        font-size: 4vmin;
+        z-index: 2000;
+        color: white;
+        position: relative;
+        cursor: pointer;
+    }
+    #speedSelect{
+        background-color: transparent;
+        color: white;
+        z-index: 100;
+        width: auto;
+        font-size: 4vmin;
+        opacity: 1;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+    #speedSelect option{
+        background-color: transparent !important; 
+        color: black;
+        z-index: 100;
+        width: auto;
+        font-size: 4vmin;
+        cursor: pointer;
+        cursor: pointer;
+    }
 }
-.menuContainer p{
+.lostContainer{
     display: flex;
     justify-content: center;
+    gap: 10vmin;
     align-items: center;
     flex-direction: column;
-    z-index: 2000;
-    color: white;
     position: absolute;
+    top: 0;
+    width: 100%;
+    height: 110vh;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    #Lost{
+        font-weight: bold;
+        font-size: 4vmin;
+        color: white;
+        position: relative;
+    }
+    #Score{
+        color: white;
+        font-size: 4vmin;
+        color: white;
+        position: relative;
+    }
+    #Restart{
+        font-weight: bold;
+        font-size: 4vmin;
+        color: white;
+        position: relative;
+        cursor: pointer;
+    }
+}
+.winIndex{
+    z-index: 2000;
+}
+.lostIndex{
+    z-index: 0;
 }
 .game-board{
     width: 100vmin;
@@ -106,7 +113,7 @@ main{
     grid-template-columns: repeat(15, 1fr);  
     z-index: -2;
 }
-.snake{
+.snake{ 
     background-color: #075a79;
     border: .25vmin solid black;
     z-index: 10;
@@ -175,31 +182,6 @@ main{
 }
 svg{
     z-index: 2;
-}
-.container{
-    display: grid;
-    grid-row: 1/16;
-    grid-column: 1/16;
-    opacity: 0;
-    width: 100vmin;
-    height: 100vmin;
-}
-.popup{
-    border-radius: 20px;
-    font-size: 6vmin;
-    z-index: 50;
-    display: flex;
-    justify-content: center;
-    align-items: normal;
-    padding: 10vmin;
-    height: 100%;
-    position: relative;
-    opacity: 0;
-    animation: 1s slideUp forwards;
-    flex-direction: column;
-    text-align: center;
-    color: whitesmoke;
-    backdrop-filter: blur(1px);
 }
 @keyframes slideUp{
     from{
