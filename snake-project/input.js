@@ -81,8 +81,6 @@ const speedSelect = document.querySelector("#speedSelect")
 const menuContainer = document.querySelector(".menuContainer")
 const startButton = document.querySelector("#startButton")
 function speedChange(){
-speedSelect.addEventListener("change", () => {
-
     const selectedSpeed = speedSelect.value
 
     if(selectedSpeed == "clearInterval"){
@@ -103,8 +101,9 @@ speedSelect.addEventListener("change", () => {
     else if(selectedSpeed == "200"){
         speedChangeControl()
     }
-})
 }
+speedSelect.addEventListener("change", speedChange)
+
 restartGame()
 speedChange()
 export function restartGame(){ 
@@ -125,28 +124,28 @@ export function restartGame(){
         inputDirection = {x: 0, y:0}
         lastDirection = {x:0, y:0}
         snakeSpeed = Number(speedSelect.value)
+        speedSelect.disabled = false
     })
 }
 
 function startGame(){
     
     const menuContainer = document.querySelector(".menuContainer")
-    
     window.removeEventListener("keydown",controls)
     startButton.addEventListener("click", () => {
         const selectedSpeed = speedSelect.value
         if(selectedSpeed.value != "clearInterval"){  
             menuContainer.style.opacity = "0"
             window.addEventListener("keydown",controls)
+            speedSelect.disabled = true
         } 
+        window.addEventListener("keydown",controls)
     }) 
     
 }
-function speedChangeControl(){ // vypnout možnost hraní před začátím hry
+function speedChangeControl(){ 
     startGame()
     clearInterval(interval)
     snakeSpeed = Number(speedSelect.value)
-    intervalStart()
-    window.addEventListener("keydown",controls)
 }
 // přidat aniamci když had narazí do stěny aby vyletel malicko nahoru a pak spadl dolů z mapy 
