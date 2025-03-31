@@ -1,4 +1,4 @@
-import {position, snakeBody,gameOver, hidePopup, Score, popupContainer} from "./game.js";
+import {position, snakeBody,gameOver, hidePopup, Score, popupContainer, SNAKE} from "./game.js";
 import {appleSpawn, resetScore} from "./food.js";
 
 export let interval
@@ -125,6 +125,11 @@ export function restartGame(){
         lastDirection = {x:0, y:0}
         snakeSpeed = Number(speedSelect.value)
         speedSelect.disabled = false
+        for(let i = 0; i < snakeBody.length; i++){
+            snakeBody[i].classList.remove("lostAnimation")
+        }
+        SNAKE.classList.remove("startAnimation")
+        SNAKE.style.opacity = "1"
     })
 }
 

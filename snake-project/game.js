@@ -9,8 +9,8 @@ export const popupContainer = document.querySelector(".lostContainer")
 export const snakeBody = [SNAKE]
 
 
-//Změnit lehce barvu nebo tvar hlavy
 SNAKE.classList.add("snake")
+SNAKE.classList.add("startAnimation")
 
 gameBoard.appendChild(SNAKE)
 let colorLocation = { x:0, y: 0}
@@ -40,6 +40,9 @@ function lostGame(){
     clearInterval(interval)
     popupMessage()
     window.removeEventListener("keydown",controls)
+    for(let i = 0; i < snakeBody.length; i++){
+        snakeBody[i].classList.add("lostAnimation")
+    }
 }
 export function gameOver(){
     if(position.x >= 16){

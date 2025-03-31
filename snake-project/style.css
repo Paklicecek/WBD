@@ -119,8 +119,28 @@ main{
     z-index: 10;
     transition: 0.25s;
     opacity: 0;
+}
+.startAnimation{
     animation: snakeAnimation 1s forwards;
+    animation-iteration-count: 1;
     animation-delay: 2s;
+}
+.lostAnimation{
+    animation: snakeLossAnimation 1s forwards;
+}
+@keyframes snakeLossAnimation{
+    from{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+    20%{
+        opacity: 1;
+        transform: translateY(-20%);
+    }
+    to{
+        opacity: 0;
+        transform: translateY(500%);
+    }
 }
 @keyframes snakeAnimation{
     from{
