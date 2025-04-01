@@ -1,12 +1,12 @@
 import {position, snakeBody,gameOver, hidePopup, Score, popupContainer, SNAKE} from "./game.js";
-import {appleSpawn, resetScore} from "./food.js";
+import {appleSpawn, resetScore, scoreCount} from "./food.js";
 
 export let interval
 
 export function updateSnakePosition() {
+    
     snakeBody[0].style.gridColumnStart = position.y
     snakeBody[0].style.gridRowStart = position.x
-    
     for(let i = snakeBody.length - 1; i > 0; i--) {
         snakeBody[i].style.gridColumnStart = snakeBody[i-1].style.gridColumnStart
         snakeBody[i].style.gridRowStart = snakeBody[i-1].style.gridRowStart
@@ -19,20 +19,19 @@ let snakeSpeed = 600
 
 export function intervalStart(){
     interval = setInterval(() => {
-        appleSpawn()
+        console.log(scoreCount)
         getInput()
         updateSnakePosition()
+        appleSpawn()
         gameOver()
-        console.log(speedSelect.value)
     }, snakeSpeed);
 }
 function gameControl(){
     clearInterval(interval)
-    appleSpawn()
-    gameOver()
     getInput()
     updateSnakePosition()
-    
+    appleSpawn()
+    gameOver()
     intervalStart()
 }
 export function controls(key) {
@@ -80,26 +79,31 @@ export const restartButton = document.querySelector("#Restart")
 const speedSelect = document.querySelector("#speedSelect")
 const menuContainer = document.querySelector(".menuContainer")
 const startButton = document.querySelector("#startButton")
+const Difficulty = document.querySelector("#Difficulty")
 function speedChange(){
     const selectedSpeed = speedSelect.value
 
     if(selectedSpeed == "clearInterval"){
-        startGame()
         clearInterval(interval)
         window.removeEventListener("keydown",controls)
         inputDirection = {x: 0, y:0}
+        return
     }
     else if(selectedSpeed == "600"){
         speedChangeControl()
+        return
     }
     else if(selectedSpeed == "450"){
         speedChangeControl()
+        return
     }
     else if(selectedSpeed == "350"){
         speedChangeControl()
+        return
     }
     else if(selectedSpeed == "200"){
         speedChangeControl()
+        return
     }
 }
 speedSelect.addEventListener("change", speedChange)
@@ -123,13 +127,13 @@ export function restartGame(){
         popupContainer.style.zIndex = "0"
         inputDirection = {x: 0, y:0}
         lastDirection = {x:0, y:0}
-        snakeSpeed = Number(speedSelect.value)
         speedSelect.disabled = false
         for(let i = 0; i < snakeBody.length; i++){
             snakeBody[i].classList.remove("lostAnimation")
         }
         SNAKE.classList.remove("startAnimation")
         SNAKE.style.opacity = "1"
+        Difficulty.remove()
     })
 }
 
@@ -153,4 +157,11 @@ function speedChangeControl(){
     clearInterval(interval)
     snakeSpeed = Number(speedSelect.value)
 }
-// přidat aniamci když had narazí do stěny aby vyletel malicko nahoru a pak spadl dolů z mapy 
+function snakeCollision() { // Zabugovane 
+    for(let i = 4; i < snakeBody.length; i++){
+            if(snakeBody[i].style.gridColumnStart == snakeBody[0].style.gridColumnStart && snakeBody[i].style.gridRowStart == snakeBody[0].style.gridRowStart){
+                console.log(position.x, position.y)
+                console.log("odpalim tuhle skolu")
+            }
+    }
+}
