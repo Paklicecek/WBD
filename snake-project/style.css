@@ -178,7 +178,7 @@ main{
     }
 }
 .board{
-    background-color: #82d173;
+    background-color: #3c7c2f;
     z-index: 0;
     width: 6.67vmin;
     height: 6.67vmin;
@@ -186,7 +186,7 @@ main{
     animation: 1s boardAnimation forwards;
 }
 .board2{
-    background-color: #abfaa9;
+    background-color: #538f52;
     z-index: 0;
     width: 6.67vmin;
     height: 6.67vmin;
