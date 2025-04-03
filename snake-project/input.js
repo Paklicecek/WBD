@@ -1,5 +1,5 @@
-import {position, snakeBody,gameOver, hidePopup, Score, popupContainer, SNAKE} from "./game.js";
-import {appleSpawn, resetScore, scoreCount} from "./food.js";
+import {position, snakeBody,gameOver, hidePopup, Score, popupContainer, SNAKE, lostGame} from "./game.js";
+import {appleSpawn, resetScore} from "./food.js";
 
 export let interval
 
@@ -7,6 +7,7 @@ export function updateSnakePosition() {
     
     snakeBody[0].style.gridColumnStart = position.y
     snakeBody[0].style.gridRowStart = position.x
+    snakeCollision()
     for(let i = snakeBody.length - 1; i > 0; i--) {
         snakeBody[i].style.gridColumnStart = snakeBody[i-1].style.gridColumnStart
         snakeBody[i].style.gridRowStart = snakeBody[i-1].style.gridRowStart
@@ -19,7 +20,6 @@ let snakeSpeed = 600
 
 export function intervalStart(){
     interval = setInterval(() => {
-        console.log(scoreCount)
         getInput()
         updateSnakePosition()
         appleSpawn()
@@ -118,9 +118,10 @@ export function restartGame(){
         hidePopup()
         clearInterval(interval)
         window.removeEventListener("keydown",controls)
-        for(let i = 1; i < snakeBody.length; i++){
+        for(let i = 2; i < snakeBody.length; i++){
             snakeBody[i].remove()
         }
+        snakeBody.length = 2
         Score.innerHTML = "Score: 1"
         resetScore()
         menuContainer.style.opacity = "1"
@@ -138,7 +139,6 @@ export function restartGame(){
 }
 
 function startGame(){
-    
     const menuContainer = document.querySelector(".menuContainer")
     window.removeEventListener("keydown",controls)
     startButton.addEventListener("click", () => {
@@ -157,11 +157,10 @@ function speedChangeControl(){
     clearInterval(interval)
     snakeSpeed = Number(speedSelect.value)
 }
-function snakeCollision() { // Zabugovane 
+function snakeCollision() { 
     for(let i = 4; i < snakeBody.length; i++){
             if(snakeBody[i].style.gridColumnStart == snakeBody[0].style.gridColumnStart && snakeBody[i].style.gridRowStart == snakeBody[0].style.gridRowStart){
-                console.log(position.x, position.y)
-                console.log("odpalim tuhle skolu")
+                lostGame()
             }
     }
 }

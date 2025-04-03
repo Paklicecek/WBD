@@ -36,7 +36,7 @@ function popupMessage(){
     popupContainer.style.opacity = "1"
     popupContainer.style.zIndex = "3000"
 }
-function lostGame(){
+export function lostGame(){
     clearInterval(interval)
     popupMessage()
     window.removeEventListener("keydown",controls)
