@@ -1,0 +1,362 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+:root {
+    --primary-color: #f5f5f5;
+    --secondary-color: #fff;
+    --accent-color: #220685;
+}
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-color);
+}
+h1{
+    color: var(--accent-color);
+}
+header {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding: 1rem;
+}
+header a {
+    color: white;
+    text-decoration: none;
+    background-color: var(--accent-color);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    display: inline-block;
+}
+main {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form{
+    width: 50%;
+}
+.container {
+    background-color: var(--secondary-color);
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 8px;
+}
+.newTask{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    input[type="text"]{
+        width: 70%;
+    }
+    select{
+        width: 20%;
+    }
+    input[type="date"]{
+        width: 20%;
+    }
+}
+.newTask input[type="text"],
+.newTask select,
+.newTask input[type="date"] {
+    border: solid 1px var(--accent-color);
+    border-radius: 8px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    height: 2.5rem; 
+}
+.customSelect{
+    width: 20%;
+    z-index: 10;
+    border: solid 1px var(--accent-color);
+    padding: 0.5rem;
+    border-radius: 8px;
+    height: 2.5rem;
+    font-size: 1rem;
+    user-select: none;
+    .options{
+        position: absolute;
+        display: none;
+        border-radius: 8px;
+    }
+    .selected{
+        img{
+            height: 1rem;
+            width: 1rem;
+        }
+    }
+}
+.customSelect .selected {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+.customSelect .selected img {
+    margin-left: auto;  
+    height: 1rem;
+    width: 1rem;
+    pointer-events: none;
+}
+.Pen, 
+.Trash{
+    height: 1.5rem;
+    width: 1.5rem;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
+.Pen{
+    margin-left: 2.5rem;
+    opacity: 0;
+    animation: 0.5s pen forwards;
+    animation-delay: 0.8s;
+}
+.Trash{
+    margin-left: 3rem;
+    opacity:0;
+    animation: 0.5s trash forwards;
+    animation-delay: 1s;
+    transition: 0.3s;
+}
+/* LOOKS FUCKED UP, CHANGE TO SVG*/
+.Trash:hover {
+    filter: invert(27%) sepia(98%) saturate(7487%) hue-rotate(357deg) brightness(97%) contrast(119%);
+}
+.taskContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    width: 0%;
+    background-color: var(--secondary-color);
+    box-shadow:
+    0 4px 6px rgba(0,0,0,0.1),
+    0 1px 3px rgba(0,0,0,0.08);
+    border-radius: 8px;  
+    min-height: 0;     
+    height: 0;     
+    padding-top: 0;                    
+    padding-bottom: 0;
+    overflow: hidden;   
+    animation: 1s taskAnimation forwards;
+}
+.taskContainer .task{
+    width: 40%;
+    padding-left: 0.25rem;
+    overflow-wrap: break-word;
+    margin-left: 0.4rem;
+    animation: 1.2s task forwards;
+}
+.taskContainer .date{
+    width: 20%;
+    padding: 0.5rem;
+    animation: 1.2s date forwards;
+}
+.taskContainer .colorContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+}
+.colorContainer{
+    margin-left: 2.5rem;
+}
+.color{
+    animation: 1.2s circle forwards;
+}
+@keyframes taskAnimation{
+    0% {
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        width: 0%;
+      }
+      100% {
+        height: auto;
+        min-height: 3.5rem;         
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        width: 100%;
+      }
+    }
+@keyframes date{
+    from{
+        opacity: 0;
+        transform: translateX(-1.5rem);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0rem);
+    }
+}
+@keyframes task{
+    from{
+        opacity: 0;
+        transform: translateY(-1.5rem);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+}
+@keyframes circle{
+    from{
+        width: 0rem;
+        height: 0rem;
+        border-radius: 0%;
+    }
+    to{
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+    }
+}
+@keyframes pen{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes trash{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+.removing-taskContainer {
+    animation: 1s remove-taskContainer forwards !important;
+}
+.removing-date {
+    animation: 1.2s remove-date forwards !important;
+}
+.removing-task {
+    animation: 1.2s remove-task forwards !important;
+}
+.removing-color {
+    animation: 1.2s remove-circle forwards;
+}
+.removing-pen {
+    opacity: 1;
+    animation: 0.5s remove-trash forwards;
+    animation-delay: 0.6s;
+}
+.removing-trash {
+    opacity: 1;
+    animation: 0.5s remove-trash forwards;
+    animation-delay: 0.8s;
+}
+@keyframes remove-taskContainer{
+    0% {
+        height: auto;
+        min-height: 3.5rem;         
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        width: 100%;
+    }
+    100% {
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        width: 0;
+    }
+}
+@keyframes remove-date{
+    from{
+        opacity: 1;
+        transform: translateX(0rem);
+    }
+    to{
+        opacity: 0;
+        transform: translateX(-1.5rem);
+    }
+}
+@keyframes remove-task{
+    from{
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+    to{
+        opacity: 0;
+        transform: translateY(-1.5rem);
+    }
+}
+@keyframes remove-circle{
+    from{
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+    }
+    to{
+        width: 0rem;
+        height: 0rem;
+        border-radius: 0%;
+    }
+}
+@keyframes remove-trash{
+    /* same for removing pen */
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+.submit{
+    height: 2.5rem;
+    width: 15%;
+    cursor: pointer;
+    position: relative;
+    padding: 10px 24px;
+    font-size: 1rem;
+    color: white;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    background-color: var(--accent-color);
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+    overflow: hidden;
+}
+.submit::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: inherit;
+    scale: 0;
+    z-index: -1;
+    background-color: var(--secondary-color);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);  
+}
+.submit:hover::before{
+    scale:3;
+}
+.submit:hover{
+    color: var(--accent-color);
+    scale: 1.1;
+    box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
+}
+.submit:active{
+    scale: 1;
+}

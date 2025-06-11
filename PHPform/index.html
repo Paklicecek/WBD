@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Vstupní dotazník Dominika</h1>
+    </header>
+    <main>
+        <form action="index.php" method="post">
+            <div class="container">
+                <div class="jmeno-con">
+                    <label for="jmeno">Jméno</label>
+                    <input type="text" name="jmeno" id="jmeno" required>
+                </div>
+    
+                <div class="prijimeni-con">
+                    <label for="prijimeni">Přijímení</label>
+                    <input type="text" name="prijimeni" id="prijimeni" required>
+                </div>
+    
+                <div class="age-con">
+                    <label for="vek">Věk</label>
+                    <input type="number" name="vek" id="vek" required>
+                </div>
+    
+                <p>Ročník</p>
+                <div class="checkbox-con">
+                    <label for="rocnik1" class="rocnik">První</label>
+                    <input type="radio" name="rocnik" id="rocnik1" value="První" required>
+                    
+                    <label for="rocnik2" class="rocnik">Druhý</label>
+                    <input type="radio" name="rocnik" id="rocnik2" value="Druhý">
+                    
+                    <label for="rocnik3" class="rocnik">Třetí</label>
+                    <input type="radio" name="rocnik" id="rocnik3" value="Třetí">
+                    
+                    <label for="rocnik4" class="rocnik">Čtvrtý</label>
+                    <input type="radio" name="rocnik" id="rocnik4" value="Čtvrtý">
+                </div>
+                <div class="predmet">
+                    <label for="predmet">Oblíbený předmět:</label>
+                    <select name="predmet">
+                        <option value="WBD">WBD</option>
+                        <option value="OBN">OBN</option>
+                        <option value="MAT">MAT</option>
+                        <option value="FYZ">FYZ</option>
+                        <option value="OPS">OPS</option>
+                        <option value="GAM">GAM</option>
+                    </select>
+                </div>
+                <input type="submit" value="Odeslat" id="submit">
+            </div>
+        </form>
+    </main>
+</body>
+</html>
